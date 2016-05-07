@@ -7,11 +7,12 @@ After=docker.service<% if @depends %><% @depends.each do |dep| %><%= " docker-#{
 Type=simple
 Restart=always
 RestartSec=5
+EnvironmentFile=/etc/docker-<%= @title %>.env
 ExecStartPre=-/usr/bin/docker stop <%= @title %>
 ExecStartPre=-/usr/bin/docker rm <%= @title %>
 ExecStart=/usr/bin/docker run --rm \
     <%= @docker_run_options %> \
-    <%= @image_arg %> <%= @command %>
+    $IMAGE_ARG $COMMAND
 ExecStop=/usr/bin/docker stop <%= @title %>
 
 [Install]

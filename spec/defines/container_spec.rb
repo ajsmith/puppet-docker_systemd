@@ -18,11 +18,12 @@ After=docker.service
 Type=simple
 Restart=always
 RestartSec=5
+EnvironmentFile=/etc/docker-httpd.env
 ExecStartPre=-/usr/bin/docker stop httpd
 ExecStartPre=-/usr/bin/docker rm httpd
 ExecStart=/usr/bin/docker run --rm \\
     --name httpd \\
-    httpd 
+    $IMAGE_ARG $COMMAND
 ExecStop=/usr/bin/docker stop httpd
 
 [Install]
@@ -38,6 +39,16 @@ EOF
                  'enable'   => 'true',
                  'provider' => 'systemd'
                })
+    }
+
+    it {
+      should contain_file('/etc/docker-httpd.env').with(
+        'ensure'  => 'present',
+        'content' => <<-EOF
+COMMAND=
+IMAGE_ARG=httpd
+EOF
+      )
     }
   end
 
@@ -74,6 +85,7 @@ After=docker.service docker-dep1.service docker-dep2.service
 Type=simple
 Restart=always
 RestartSec=5
+EnvironmentFile=/etc/docker-webserver.env
 ExecStartPre=-/usr/bin/docker stop webserver
 ExecStartPre=-/usr/bin/docker rm webserver
 ExecStart=/usr/bin/docker run --rm \\
@@ -85,7 +97,7 @@ ExecStart=/usr/bin/docker run --rm \\
     --entrypoint /bin/bash \\
     --env FOO=BAR --env BAR=BAZ \\
     --env-file /etc/foo.list --env-file /etc/bar.list \\
-    httpd -c "/bin/ls"
+    $IMAGE_ARG $COMMAND
 ExecStop=/usr/bin/docker stop webserver
 
 [Install]
@@ -100,6 +112,16 @@ EOF
                     'enable'   => 'false',
                     'provider' => 'systemd'
                   })
+    }
+
+    it {
+      should contain_file('/etc/docker-webserver.env').with(
+        'ensure'  => 'present',
+        'content' => <<-EOF
+COMMAND=-c "/bin/ls"
+IMAGE_ARG=httpd
+EOF
+      )
     }
   end
 end
