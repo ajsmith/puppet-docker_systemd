@@ -174,6 +174,8 @@ Issues and pull requests are welcome! Send those to:
 
 ## Release Notes
 
+### v0.4.0 (unreleased)
+
 ### v0.3.1
 
 - Documentation updates.
