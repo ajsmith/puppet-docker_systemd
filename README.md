@@ -80,7 +80,11 @@ The following options are available for `docker_systemd::container`:
   * `enable`: Takes any `enable` value accepted by the `Service` resource type
     (Default `true`).
 
+  * `hostname`: The hostname associated with the container.
+
   * `image`: The name of the docker image to use.
+
+  * `privileged`: If set to 'true' give extended privileges to this container.
 
   * `pull_image`: Always pull image before starting the container. (Default
     `false`)

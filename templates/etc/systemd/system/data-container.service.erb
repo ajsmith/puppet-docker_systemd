@@ -1,7 +1,7 @@
 [Unit]
 Description=Docker Data Container for <%= @title %>
-Requires=docker.service<% if @depends %><% @depends.each do |dep| %><%= " #{dep}.service" %><% end %><% end %>
-After=docker.service<% if @depends %><% @depends.each do |dep| %><%= " #{dep}.service" %><% end %><% end %>
+Requires=docker.service<% if @systemd_depends %><% @systemd_depends.each do |dep| %><%= " #{dep}" %><% end %><% end %>
+After=docker.service<% if @systemd_depends %><% @systemd_depends.each do |dep| %><%= " #{dep}" %><% end %><% end %>
 
 [Service]
 Type=oneshot
@@ -9,7 +9,7 @@ Restart=no
 RemainAfterExit=yes
 <% if @systemd_env_file %><%= "EnvironmentFile=#{@systemd_env_file}" %><% end %>
 <% if @pull_image %>ExecStartPre=/usr/bin/docker pull <%= @image %><% end %>
-ExecStart=-/usr/bin/docker run \
+ExecStart=-/usr/bin/docker create \
     <%= @docker_run_options %> \
     <%= @image %>
 ExecStop=/usr/bin/docker stop <%= @title %>

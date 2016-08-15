@@ -6,7 +6,9 @@ describe 'docker_systemd::data_volume_container' do
     let(:title) { 'httpd-data' }
     let(:params) {
       {
-        :image      => 'httpd',
+        :image   => 'httpd',
+        :volume  => ['/var/data'],
+        :systemd_depends => ['network.target'],
       }
     }
 
@@ -21,8 +23,8 @@ describe 'docker_systemd::data_volume_container' do
                     'content' => <<-EOF\
 [Unit]
 Description=Docker Data Container for httpd-data
-Requires=docker.service
-After=docker.service
+Requires=docker.service network.target
+After=docker.service network.target
 
 [Service]
 Type=oneshot
@@ -30,8 +32,9 @@ Restart=no
 RemainAfterExit=yes
 
 
-ExecStart=-/usr/bin/docker run \\
+ExecStart=-/usr/bin/docker create \\
     --name httpd-data \\
+    --volume /var/data \\
     --entrypoint /bin/true \\
     httpd
 ExecStop=/usr/bin/docker stop httpd-data
@@ -80,7 +83,7 @@ Restart=no
 RemainAfterExit=yes
 EnvironmentFile=/etc/sysconfig/docker-httpd-data.env
 ExecStartPre=/usr/bin/docker pull $IMAGE
-ExecStart=-/usr/bin/docker run \\
+ExecStart=-/usr/bin/docker create \\
     --name httpd-data \\
     --entrypoint /bin/true \\
     $IMAGE

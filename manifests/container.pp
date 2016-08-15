@@ -13,6 +13,8 @@ define docker_systemd::container (
   $env              = undef,
   $env_file         = undef,
   $systemd_env_file = undef,
+  $hostname         = undef,
+  $privileged       = undef,
 ) {
 
   include ::docker_systemd
@@ -27,13 +29,15 @@ define docker_systemd::container (
   $docker_run_options = build_docker_run_options({
     link         => $link,
     name         => $title,
+    privileged   => $privileged,
     publish      => $publish,
     volume       => $volume,
     volumes_from => $volumes_from,
     entrypoint   => $entrypoint,
     env          => $env,
     env_file     => $env_file,
-    })
+    hostname     => $hostname,
+  })
 
   file { "/etc/systemd/system/${service_name}":
     ensure  => present,
