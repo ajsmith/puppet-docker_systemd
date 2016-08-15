@@ -110,6 +110,8 @@ The following options are available for `docker_systemd::container`:
 
   * `systemd_env_file`: Path to a systemd environment file to use.
 
+  * `systemd_depends`: Dependencies on other systemd targets. (List)
+
 ### docker_systemd::exec
 
 `docker_systemd::exec` allows a `docker exec` command to be invoked within a
@@ -158,6 +160,8 @@ The following options are available for
     `false`)
 
   * `systemd_env_file`: Path to a systemd environment file to use.
+
+  * `systemd_depends`: Dependencies on other systemd targets. (List)
 
 For more information about the data volume container pattern, see the
 official Docker documentation for
