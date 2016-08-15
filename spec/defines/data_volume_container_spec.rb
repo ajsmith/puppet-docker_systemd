@@ -7,8 +7,6 @@ describe 'docker_systemd::data_volume_container' do
     let(:params) {
       {
         :image   => 'httpd',
-        :volume  => ['/var/data'],
-        :systemd_depends => ['network.target'],
       }
     }
 
@@ -23,8 +21,8 @@ describe 'docker_systemd::data_volume_container' do
                     'content' => <<-EOF\
 [Unit]
 Description=Docker Data Container for httpd-data
-Requires=docker.service network.target
-After=docker.service network.target
+Requires=docker.service 
+After=docker.service 
 
 [Service]
 Type=oneshot
@@ -34,7 +32,6 @@ RemainAfterExit=yes
 
 ExecStart=-/usr/bin/docker run \\
     --name httpd-data \\
-    --volume /var/data \\
     --entrypoint /bin/true \\
     httpd
 ExecStop=/usr/bin/docker stop httpd-data
@@ -59,7 +56,9 @@ EOF
       {
         :image            => '$IMAGE',
         :pull_image       => 'true',
+        :volume           => ['/var/data'],
         :systemd_env_file => '/etc/sysconfig/docker-httpd-data.env',
+        :systemd_depends  => ['foo.target'],
       }
     }
 
@@ -74,8 +73,8 @@ EOF
                     'content' => <<-EOF\
 [Unit]
 Description=Docker Data Container for httpd-data
-Requires=docker.service 
-After=docker.service 
+Requires=docker.service foo.target
+After=docker.service foo.target
 
 [Service]
 Type=oneshot
@@ -85,6 +84,7 @@ EnvironmentFile=/etc/sysconfig/docker-httpd-data.env
 ExecStartPre=/usr/bin/docker pull $IMAGE
 ExecStart=-/usr/bin/docker run \\
     --name httpd-data \\
+    --volume /var/data \\
     --entrypoint /bin/true \\
     $IMAGE
 ExecStop=/usr/bin/docker stop httpd-data
