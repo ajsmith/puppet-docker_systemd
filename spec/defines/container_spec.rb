@@ -15,8 +15,8 @@ describe 'docker_systemd::container' do
                  'content' => <<-EOF\
 [Unit]
 Description=Docker Container Service for httpd
-Requires=docker.service
-After=docker.service
+Requires=docker.service 
+After=docker.service 
 
 [Service]
 Type=simple
@@ -68,6 +68,7 @@ EOF
         :systemd_env_file => '/etc/sysconfig/docker-httpd.env',
         :privileged       => 'true',
         :hostname         => 'webserver.local',
+        :systemd_depends  => ['foo.target'],
       }
     }
 
@@ -77,8 +78,8 @@ EOF
                     'content' => <<-EOF\
 [Unit]
 Description=Docker Container Service for webserver
-Requires=docker.service docker-dep1.service docker-dep2.service
-After=docker.service docker-dep1.service docker-dep2.service
+Requires=docker.service foo.target docker-dep1.service docker-dep2.service
+After=docker.service foo.target docker-dep1.service docker-dep2.service
 
 [Service]
 Type=simple

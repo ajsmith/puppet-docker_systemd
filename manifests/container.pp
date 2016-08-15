@@ -13,6 +13,7 @@ define docker_systemd::container (
   $env              = undef,
   $env_file         = undef,
   $systemd_env_file = undef,
+  $systemd_depends  = undef,
   $hostname         = undef,
   $privileged       = undef,
 ) {

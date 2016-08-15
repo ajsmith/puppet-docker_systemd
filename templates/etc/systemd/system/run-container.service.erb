@@ -1,7 +1,7 @@
 [Unit]
 Description=Docker Container Service for <%= @title %>
-Requires=docker.service<% if @depends %><% @depends.each do |dep| %><%= " docker-#{dep}.service" %><% end %><% end %>
-After=docker.service<% if @depends %><% @depends.each do |dep| %><%= " docker-#{dep}.service" %><% end %><% end %>
+Requires=docker.service <%= scope.function_systemd_requires([{:depends=>@depends, :systemd_depends=>@systemd_depends}]) %>
+After=docker.service <%= scope.function_systemd_requires([{:depends=>@depends, :systemd_depends=>@systemd_depends}]) %>
 
 [Service]
 Type=simple
