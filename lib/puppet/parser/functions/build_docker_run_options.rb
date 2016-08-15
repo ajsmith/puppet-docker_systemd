@@ -17,6 +17,7 @@ module Puppet::Parser::Functions
     :entrypoint => single_arg('entrypoint'),
     :env => separate_multi_arg('env'),
     :env_file => separate_multi_arg('env-file'),
+    :hostname => single_arg('hostname'),
     :label => separate_multi_arg('label'),
     :label_file => single_arg('label-file'),
     :link => separate_multi_arg('link'),
@@ -25,7 +26,6 @@ module Puppet::Parser::Functions
     :publish => separate_multi_arg('publish'),
     :volume => separate_multi_arg('volume'),
     :volumes_from => separate_multi_arg('volumes-from'),
-    :hostname => single_arg('hostname')
   }
 
   newfunction(
