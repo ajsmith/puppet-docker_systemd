@@ -6,7 +6,7 @@ describe 'docker_systemd::data_volume_container' do
     let(:title) { 'httpd-data' }
     let(:params) {
       {
-        :image   => 'httpd',
+        :image => 'httpd',
       }
     }
 
