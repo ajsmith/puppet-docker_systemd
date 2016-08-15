@@ -74,8 +74,8 @@ EOF
                     'content' => <<-EOF\
 [Unit]
 Description=Docker Data Container for httpd-data
-Requires=docker.service
-After=docker.service
+Requires=docker.service 
+After=docker.service 
 
 [Service]
 Type=oneshot
