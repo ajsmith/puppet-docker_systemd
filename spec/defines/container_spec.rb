@@ -91,7 +91,7 @@ ExecStartPre=/usr/bin/docker pull $IMAGE
 ExecStart=/usr/bin/docker run --rm \\
     --link l1:l1 --link l2:l2 \\
     --name webserver \\
-    --privileged \\
+    --privileged=true \\
     --publish 80:80/tcp \\
     --volume /appdata --volume /shared:/shared:rw \\
     --volumes-from httpd-data \\

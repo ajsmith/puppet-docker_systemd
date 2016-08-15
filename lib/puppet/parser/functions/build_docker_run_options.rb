@@ -1,14 +1,10 @@
 
-def single_arg(opt)
-  lambda { |arg| "--#{opt} #{arg}" }
+def single_arg(opt, separator=' ')
+  lambda { |arg| "--#{opt}#{separator}#{arg}" }
 end
 
-def separate_multi_arg(opt)
-  lambda { |args| args.map {|arg| "--#{opt} #{arg}"}.join(' ') }
-end
-
-def toggle_arg(opt)
-  lambda { |arg| "--#{opt}" if arg == 'true' }
+def separate_multi_arg(opt, separator=' ')
+  lambda { |args| args.map {|arg| "--#{opt}#{separator}#{arg}"}.join(' ') }
 end
 
 module Puppet::Parser::Functions
@@ -22,7 +18,7 @@ module Puppet::Parser::Functions
     :label_file => single_arg('label-file'),
     :link => separate_multi_arg('link'),
     :name => single_arg('name'),
-    :privileged => toggle_arg('privileged'),
+    :privileged => single_arg('privileged', '='),
     :publish => separate_multi_arg('publish'),
     :volume => separate_multi_arg('volume'),
     :volumes_from => separate_multi_arg('volumes-from'),
