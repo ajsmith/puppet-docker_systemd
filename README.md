@@ -189,8 +189,14 @@ Issues and pull requests are welcome! Send those to:
 ### v0.4.0
 
 - Add support for declaring general systemd dependencies.
-- Add support additional 'docker run' options on containers and data volume
-  containers.
+- Add support for additional options on containers:
+  - `--privileged`
+  - `--hostname`
+  - `--log-driver`
+  - `--log-opt`
+- Add support for additional options on data volume containers:
+  - `--privileged`
+  - `--hostname`
 - Improve error handling for data volume container services.
 
 ### v0.3.1
