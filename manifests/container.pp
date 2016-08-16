@@ -13,6 +13,8 @@ define docker_systemd::container (
   $env_file         = undef,
   $hostname         = undef,
   $link             = undef,
+  $log_driver       = undef,
+  $log_opt          = undef,
   $privileged       = undef,
   $publish          = undef,
   $volume           = undef,
@@ -34,6 +36,8 @@ define docker_systemd::container (
   $service_name = "docker-${title}.service"
   $docker_run_options = build_docker_run_options({
     link         => $link,
+    log_driver   => $log_driver,
+    log_opt      => $log_opt,
     name         => $title,
     privileged   => $privileged,
     publish      => $publish,

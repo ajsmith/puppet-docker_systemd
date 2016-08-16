@@ -100,6 +100,10 @@ The following options are available for `docker_systemd::container`:
 
   * `link`: Containers which this container links to. (List)
 
+  * `log_driver`: Set log driver to use.
+
+  * `log_opt`: Set options for the log driver. (List)
+
   * `publish`: Ports which should be published by this container. (List)
 
   * `entrypoint`: Run this container with a different entrypoint.

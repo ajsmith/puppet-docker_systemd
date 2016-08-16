@@ -17,6 +17,8 @@ module Puppet::Parser::Functions
     :label => separate_multi_arg('label'),
     :label_file => single_arg('label-file'),
     :link => separate_multi_arg('link'),
+    :log_driver => single_arg('log-driver'),
+    :log_opt => separate_multi_arg('log-opt'),
     :name => single_arg('name'),
     :privileged => single_arg('privileged', '='),
     :publish => separate_multi_arg('publish'),

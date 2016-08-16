@@ -61,6 +61,8 @@ EOF
         :volume           => ['/appdata', '/shared:/shared:rw'],
         :volumes_from     => ['httpd-data'],
         :link             => ['l1:l1', 'l2:l2'],
+        :log_driver       => 'journald',
+        :log_opt          => ['labels=foo', 'extra=bar,baz'],
         :publish          => ['80:80/tcp'],
         :entrypoint       => '/bin/bash',
         :env              => ['FOO=BAR', 'BAR=BAZ'],
@@ -91,6 +93,8 @@ ExecStartPre=-/usr/bin/docker rm webserver
 ExecStartPre=/usr/bin/docker pull $IMAGE
 ExecStart=/usr/bin/docker run --rm \\
     --link l1:l1 --link l2:l2 \\
+    --log-driver journald \\
+    --log-opt labels=foo --log-opt extra=bar,baz \\
     --name webserver \\
     --privileged=true \\
     --publish 80:80/tcp \\
