@@ -134,9 +134,9 @@ the "docker-httpd" service. The systemd service for this is named
 
 The following options are available for `docker_systemd::exec`:
 
-  * command: Command and arguments to be run by the container.
+  * `command`: Command and arguments to be run by the container.
 
-  * container: Identifier of the container if different than the title.
+  * `container`: Identifier of the container if different than the title.
 
 ### docker_systemd::data_volume_container
 
