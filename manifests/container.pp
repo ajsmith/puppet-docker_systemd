@@ -3,11 +3,11 @@ define docker_systemd::container (
   $ensure           = running,
   $enable           = true,
   $image            = undef,
+  $depends          = undef,
   $pull_image       = false,
 
   # docker-run options
   $command          = undef,
-  $depends          = undef,
   $entrypoint       = undef,
   $env              = undef,
   $env_file         = undef,
@@ -15,6 +15,7 @@ define docker_systemd::container (
   $link             = undef,
   $log_driver       = undef,
   $log_opt          = undef,
+  $net              = undef,
   $privileged       = undef,
   $publish          = undef,
   $volume           = undef,
@@ -43,6 +44,7 @@ define docker_systemd::container (
     log_driver   => $log_driver,
     log_opt      => $log_opt,
     name         => $title,
+    net          => $net,
     privileged   => $privileged,
     publish      => $publish,
     volume       => $volume,

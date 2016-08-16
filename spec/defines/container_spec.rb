@@ -63,6 +63,7 @@ EOF
         :link             => ['l1:l1', 'l2:l2'],
         :log_driver       => 'journald',
         :log_opt          => ['labels=foo', 'extra=bar,baz'],
+        :net              => 'none',
         :publish          => ['80:80/tcp'],
         :entrypoint       => '/bin/bash',
         :env              => ['FOO=BAR', 'BAR=BAZ'],
@@ -100,6 +101,7 @@ ExecStart=/usr/bin/docker run --rm \\
     --log-driver journald \\
     --log-opt labels=foo --log-opt extra=bar,baz \\
     --name webserver \\
+    --net none \\
     --privileged=true \\
     --publish 80:80/tcp \\
     --volume /appdata --volume /shared:/shared:rw \\

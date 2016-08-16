@@ -20,6 +20,7 @@ module Puppet::Parser::Functions
     :log_driver => single_arg('log-driver'),
     :log_opt => separate_multi_arg('log-opt'),
     :name => single_arg('name'),
+    :net => single_arg('net'),
     :privileged => single_arg('privileged', '='),
     :publish => separate_multi_arg('publish'),
     :volume => separate_multi_arg('volume'),

@@ -104,6 +104,8 @@ The following options are available for `docker_systemd::container`:
 
   * `log_opt`: Set options for the log driver. (List)
 
+  * `net`: Set network mode.
+
   * `publish`: Ports which should be published by this container. (List)
 
   * `entrypoint`: Run this container with a different entrypoint.
@@ -194,6 +196,7 @@ Issues and pull requests are welcome! Send those to:
   - `--hostname`
   - `--log-driver`
   - `--log-opt`
+  - `--net`
 - Add support for additional options on data volume containers:
   - `--privileged`
   - `--hostname`
