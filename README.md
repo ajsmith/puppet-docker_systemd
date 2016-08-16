@@ -187,6 +187,7 @@ Issues and pull requests are welcome! Send those to:
 - Add support for declaring general systemd dependencies.
 - Add support additional 'docker run' options on containers and data volume
   containers.
+- Improve error handling for data volume container services.
 
 ### v0.3.1
 
