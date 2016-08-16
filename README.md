@@ -182,7 +182,11 @@ Issues and pull requests are welcome! Send those to:
 
 ## Release Notes
 
-### v0.4.0 (unreleased)
+### v0.4.0
+
+- Add support for declaring general systemd dependencies.
+- Add support additional 'docker run' options on containers and data volume
+  containers.
 
 ### v0.3.1
 
