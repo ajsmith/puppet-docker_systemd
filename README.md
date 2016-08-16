@@ -192,14 +192,14 @@ Issues and pull requests are welcome! Send those to:
 
 - Add support for declaring general systemd dependencies.
 - Add support for additional options on containers:
-  - `--privileged`
   - `--hostname`
   - `--log-driver`
   - `--log-opt`
   - `--net`
-- Add support for additional options on data volume containers:
   - `--privileged`
+- Add support for additional options on data volume containers:
   - `--hostname`
+  - `--privileged`
 - Improve error handling for data volume container services.
 
 ### v0.3.1
