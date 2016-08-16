@@ -1,21 +1,26 @@
 define docker_systemd::container (
+  # General options
   $ensure           = running,
   $enable           = true,
   $image            = undef,
   $pull_image       = false,
+
+  # docker-run options
   $command          = undef,
   $depends          = undef,
-  $volume           = undef,
-  $volumes_from     = undef,
-  $link             = undef,
-  $publish          = undef,
   $entrypoint       = undef,
   $env              = undef,
   $env_file         = undef,
-  $systemd_env_file = undef,
-  $systemd_depends  = undef,
   $hostname         = undef,
+  $link             = undef,
   $privileged       = undef,
+  $publish          = undef,
+  $volume           = undef,
+  $volumes_from     = undef,
+
+  # systemd options
+  $systemd_depends  = undef,
+  $systemd_env_file = undef,
 ) {
 
   include ::docker_systemd
