@@ -35,6 +35,10 @@ define docker_systemd::container (
 
   $service_name = "docker-${title}.service"
   $docker_run_options = build_docker_run_options({
+    entrypoint   => $entrypoint,
+    env          => $env,
+    env_file     => $env_file,
+    hostname     => $hostname,
     link         => $link,
     log_driver   => $log_driver,
     log_opt      => $log_opt,
@@ -43,10 +47,6 @@ define docker_systemd::container (
     publish      => $publish,
     volume       => $volume,
     volumes_from => $volumes_from,
-    entrypoint   => $entrypoint,
-    env          => $env,
-    env_file     => $env_file,
-    hostname     => $hostname,
   })
 
   file { "/etc/systemd/system/${service_name}":

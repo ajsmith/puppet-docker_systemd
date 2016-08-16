@@ -10,9 +10,9 @@ define docker_systemd::data_volume_container (
 
   $service_name = "docker-${title}.service"
   $docker_run_options = build_docker_run_options({
+    entrypoint => '/bin/true',
     name       => $title,
     volume     => $volume,
-    entrypoint => '/bin/true',
     })
 
   file { "/etc/systemd/system/${service_name}":
