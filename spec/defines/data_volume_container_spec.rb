@@ -30,10 +30,11 @@ Restart=no
 RemainAfterExit=yes
 
 
-ExecStart=-/usr/bin/docker run \\
+ExecStartPre=-/usr/bin/docker run \\
     --name httpd-data \\
     --entrypoint /bin/true \\
     httpd
+ExecStart=/usr/bin/docker start httpd-data
 ExecStop=/usr/bin/docker stop httpd-data
 
 [Install]
@@ -82,11 +83,12 @@ Restart=no
 RemainAfterExit=yes
 EnvironmentFile=/etc/sysconfig/docker-httpd-data.env
 ExecStartPre=/usr/bin/docker pull $IMAGE
-ExecStart=-/usr/bin/docker run \\
+ExecStartPre=-/usr/bin/docker run \\
     --name httpd-data \\
     --volume /var/data \\
     --entrypoint /bin/true \\
     $IMAGE
+ExecStart=/usr/bin/docker start httpd-data
 ExecStop=/usr/bin/docker stop httpd-data
 
 [Install]

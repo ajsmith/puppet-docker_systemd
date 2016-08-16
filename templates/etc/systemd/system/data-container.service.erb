@@ -9,9 +9,10 @@ Restart=no
 RemainAfterExit=yes
 <% if @systemd_env_file %><%= "EnvironmentFile=#{@systemd_env_file}" %><% end %>
 <% if @pull_image %>ExecStartPre=/usr/bin/docker pull <%= @image %><% end %>
-ExecStart=-/usr/bin/docker run \
+ExecStartPre=-/usr/bin/docker run \
     <%= @docker_run_options %> \
     <%= @image %>
+ExecStart=/usr/bin/docker start <%= @title %>
 ExecStop=/usr/bin/docker stop <%= @title %>
 
 [Install]
