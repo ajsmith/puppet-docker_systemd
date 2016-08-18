@@ -188,6 +188,10 @@ Issues and pull requests are welcome! Send those to:
 
 ## Release Notes
 
+### v0.4.1
+
+- Notify container services after systemd unit configurations are reloaded.
+
 ### v0.4.0
 
 - Add support for declaring general systemd dependencies.
