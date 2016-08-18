@@ -64,4 +64,6 @@ define docker_systemd::container (
     provider => systemd,
   }
 
+  Exec['systemctl-daemon-reload'] ~> Service[$service_name]
+
 }
