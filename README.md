@@ -188,6 +188,10 @@ Issues and pull requests are welcome! Send those to:
 
 ## Release Notes
 
+### v0.4.3
+
+- Fix ordering issue introduced in v0.4.1.
+
 ### v0.4.2
 
 - Re-release to fix a build issue in the last release.
