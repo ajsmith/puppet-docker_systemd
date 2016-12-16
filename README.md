@@ -104,6 +104,14 @@ The following options are available for `docker_systemd::container`:
 
   * `log_opt`: Set options for the log driver. (List)
 
+  * `memory`: Memory limit.
+
+  * `memory_reservation`: Memory soft limit.
+
+  * `memory_swap`: Swap limit equal to memory plus swap: '-1' to enable unlimited swap.
+
+  * `memory_swappiness`: Tune container memory swappiness (0 to 100).
+
   * `net`: Set network mode.
 
   * `publish`: Ports which should be published by this container. (List)
@@ -187,6 +195,14 @@ Issues and pull requests are welcome! Send those to:
 <https://github.com/ajsmith/puppet-docker_systemd>
 
 ## Release Notes
+
+### v0.5.0
+
+- Add support for memory options on containers:
+  - `--memory`
+  - `--memory-reservation`
+  - `--memory-swap`
+  - `--memory-swappiness`
 
 ### v0.4.3
 

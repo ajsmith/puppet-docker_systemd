@@ -52,26 +52,30 @@ EOF
     let(:title) { 'webserver' }
     let(:params) {
       {
-        :ensure           => 'stopped',
-        :enable           => 'false',
-        :image            => '$IMAGE',
-        :pull_image       => 'true',
-        :command          => '-c $USER_OPTS "/bin/ls"',
-        :depends          => ['dep1', 'dep2'],
-        :volume           => ['/appdata', '/shared:/shared:rw'],
-        :volumes_from     => ['httpd-data'],
-        :link             => ['l1:l1', 'l2:l2'],
-        :log_driver       => 'journald',
-        :log_opt          => ['labels=foo', 'extra=bar,baz'],
-        :net              => 'none',
-        :publish          => ['80:80/tcp'],
-        :entrypoint       => '/bin/bash',
-        :env              => ['FOO=BAR', 'BAR=BAZ'],
-        :env_file         => ['/etc/foo.list', '/etc/bar.list'],
-        :systemd_env_file => '/etc/sysconfig/docker-httpd.env',
-        :privileged       => 'true',
-        :hostname         => 'webserver.local',
-        :systemd_depends  => ['foo.target'],
+        :ensure             => 'stopped',
+        :enable             => 'false',
+        :image              => '$IMAGE',
+        :pull_image         => 'true',
+        :command            => '-c $USER_OPTS "/bin/ls"',
+        :depends            => ['dep1', 'dep2'],
+        :volume             => ['/appdata', '/shared:/shared:rw'],
+        :volumes_from       => ['httpd-data'],
+        :link               => ['l1:l1', 'l2:l2'],
+        :memory             => '2g',
+        :memory_reservation => '1g',
+        :memory_swap        => '4g',
+        :memory_swappiness  => '50',
+        :log_driver         => 'journald',
+        :log_opt            => ['labels=foo', 'extra=bar,baz'],
+        :net                => 'none',
+        :publish            => ['80:80/tcp'],
+        :entrypoint         => '/bin/bash',
+        :env                => ['FOO=BAR', 'BAR=BAZ'],
+        :env_file           => ['/etc/foo.list', '/etc/bar.list'],
+        :systemd_env_file   => '/etc/sysconfig/docker-httpd.env',
+        :privileged         => 'true',
+        :hostname           => 'webserver.local',
+        :systemd_depends    => ['foo.target'],
       }
     }
 
@@ -100,6 +104,10 @@ ExecStart=/usr/bin/docker run --rm \\
     --link l1:l1 --link l2:l2 \\
     --log-driver journald \\
     --log-opt labels=foo --log-opt extra=bar,baz \\
+    --memory 2g \\
+    --memory-reservation 1g \\
+    --memory-swap 4g \\
+    --memory-swappiness 50 \\
     --name webserver \\
     --net none \\
     --privileged=true \\
